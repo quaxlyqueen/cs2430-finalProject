@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+
+
+javac *.java 
+java Test $1
+#java Test $1 > tmp
+#awk '{print $NF}' tmp >> log
+#awk '{ sum += $1 } END { print sum }' log
+
+rm *.class #log tmp
