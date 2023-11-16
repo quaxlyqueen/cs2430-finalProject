@@ -28,7 +28,6 @@ public class Player {
 
         if(rollA == rollB) doubleDiceRoll++;
 
-        System.out.println("roll: " + rollA + ", " + rollB);
         return rollA + rollB;
     }
 

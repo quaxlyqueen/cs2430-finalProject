@@ -1,40 +1,54 @@
 import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
 
 import java.io.File;
 
 public class Board {
     private Tile head;
     private Tile tail;
+    private Tile jail;
     private int n;
 
-    public Board(File board) {
+    public Board(File board, int turns, ArrayList<Player> players) {
         n = 0;
 
         try (Scanner scan = new Scanner(board)) {
-            while(scan.hasNextLine()) add(scan.nextLine());
+            while(scan.hasNextLine()) {
+                add(scan.nextLine());
+            }
+
         } catch (Exception e) {
             System.out.println("Could not open boardTiles.txt!");
         }
 
+        int currentTurn = 0;
 
-        move(5);
-        System.out.println("head: " + head.action);
+        while(currentTurn < turns) {
+            move(players.get(0).roll());
+            currentTurn++;
+        }
+    }
 
-        move(10);
-        System.out.println("head: " + head.action);
+    public void printBoard() {
+        Tile current = head;
 
-        move(6);
-        System.out.println("head: " + head.action);
+        while(current != null) {
+            System.out.println(current.tileName + ", " + current.timesLanded);
+            current = current.next;
+
+            if(current.tileName.equals(head.tileName)) break;
+        }
     }
 
     // CIRCULAR LINKED QUEUE STRUCTURE
     private class Tile {
-        public String action;
+        public String tileName;
         public int timesLanded;
         public Tile next;
         public Tile prev;
 
-        public Tile(String action) { this.action = action; }
+        public Tile(String tileName) { this.tileName = tileName; }
 
         public void landed() {
             timesLanded++;
@@ -56,13 +70,34 @@ public class Board {
         head.landed();
     }
 
-    private void add(String action) {
+    private void moveTo(String tileName) {
+        /*
+        if(tileName.equals("Jail")) {
+            head = jail;
+            tail = jail.prev;
+        }
+        */
+
+        Tile current = head;
+
+        while(!current.tileName.equals(tileName)) {
+            current = current.next;
+        }
+
+        head = current;
+        tail = current.prev;
+
+        head.landed();
+    }
+
+    private void add(String tileName) {
         if(n == 0) {
-            head = new Tile(action);
+            head = new Tile(tileName);
             n++;
             return;
+
         } else if(n == 1) {
-            tail = new Tile(action);
+            tail = new Tile(tileName);
             head.next = tail;
             tail.prev = head;
             n++;
@@ -70,7 +105,7 @@ public class Board {
             return;
         }
 
-        tail.next = new Tile(action);
+        tail.next = new Tile(tileName);
         tail.next.prev = tail;
         tail = tail.next;
 
