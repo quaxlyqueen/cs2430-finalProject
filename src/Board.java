@@ -1,50 +1,21 @@
+import java.util.Scanner;
+
+import java.io.File;
+
 public class Board {
     private Tile head;
     private Tile tail;
     private int n;
 
-    public Board() {
+    public Board(File board) {
         n = 0;
-            add("Go");
-            add("Mediterranean Avenue");
-            add("Community Chest");
-            add("Baltic Avenue");
-            add("Income Tax");
-            add("Reading Railroad");
-            add("Oriental Avenue");
-            add("Chance");
-            add("Vermont Avenue");
-            add("Connecticut Avenue");
-            add("Jail");
-            add("St. Charles Place");
-            add("Electric Company");
-            add("States Avenue");
-            add("Virginia Avenue");
-            add("Pennsylvania Railroad");
-            add("St. James Place");
-            add("Community Chest");
-            add("Tennessee Avenue");
-            add("New York Avenue");
-            add("Free parking");
-            add("Kentucky Avenue");
-            add("Chance");
-            add("Indiana Avenue");
-            add("Illinois Avenue");
-            add("B. & O. Railroad");
-            add("Atlantic Avenue");
-            add("Ventnor Avenue");
-            add("Water Works");
-            add("Marvin Gardens");
-            add("Go to Jail");
-            add("Pacific Avenue");
-            add("North Carolina Avenue");
-            add("Community Chest");
-            add("Pennsylvania Avenue");
-            add("Short Line");
-            add("Chance");
-            add("Park Place");
-            add("Luxury Tax");
-            add("Boardwalk");
+
+        try (Scanner scan = new Scanner(board)) {
+            while(scan.hasNextLine()) add(scan.nextLine());
+        } catch (Exception e) {
+            System.out.println("Could not open boardTiles.txt!");
+        }
+
 
         move(5);
         System.out.println("head: " + head.action);
