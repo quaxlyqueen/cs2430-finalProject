@@ -6,7 +6,7 @@ public class App {
         File boardTiles = new File("boardTiles.txt");
         if(boardTiles == null) {
             System.out.println("Could not find boardTiles.txt!");
-            return;
+          //  return;
         }
         ArrayList<Player> players = new ArrayList<>();
             players.add(new Player());
