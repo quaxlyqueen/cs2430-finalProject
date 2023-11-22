@@ -41,20 +41,6 @@ public class Board {
         }
     }
 
-    // CIRCULAR LINKED QUEUE STRUCTURE
-    private class Tile {
-        public String tileName;
-        public int timesLanded;
-        public Tile next;
-        public Tile prev;
-
-        public Tile(String tileName) { this.tileName = tileName; }
-
-        public void landed() {
-            timesLanded++;
-        }
-    }
-
     private void move(int spaces) {
         int counter = 0;
 
