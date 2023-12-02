@@ -8,6 +8,10 @@ public class App {
             System.out.println("Could not find boardTiles.txt!");
             return;
         }
+
+        new Deck("community.txt");
+        new Deck("chance.txt");
+        /*
         ArrayList<Player> players = new ArrayList<>();
             players.add(new Player());
 
@@ -27,5 +31,6 @@ public class App {
 
         System.out.println("\n\n1000000 turns: ");
         b1000000.printBoard();
+        */
     }
 }
