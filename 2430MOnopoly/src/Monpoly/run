@@ -1,6 +1,0 @@
-#!/bin/zsh
-
-javac *.java
-java App
-
-rm *.class
