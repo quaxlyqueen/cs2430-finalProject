@@ -5,11 +5,16 @@ import java.util.Random;
 
 public class Deck {
     private static Random ran = new Random();
+    private String filename;
     ArrayList<Card> cards;
 
     public Deck(String filename) {
         cards = new ArrayList<Card>();
+        this.filename = filename;
+        createDeck();
+    }
 
+    private void createDeck() {
         try {
             Scanner scanner = new Scanner(new File(filename));
 
@@ -29,6 +34,8 @@ public class Deck {
     }
 
     public String draw() {
+        if(cards.size() == 0) createDeck();
+
         int index = ran.nextInt(cards.size());
         return cards.remove(index).action;
     }

@@ -1,10 +1,10 @@
 public class Tile {
-    public String tileName;
+    public String tilename;
     public int timesLanded;
     public Tile next;
     public Tile prev;
 
-    public Tile(String tileName) { this.tileName = tileName; }
+    public Tile(String tilename) { this.tilename = tilename; }
 
     public void landed() {
         timesLanded++;

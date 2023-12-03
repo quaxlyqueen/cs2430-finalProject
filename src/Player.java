@@ -27,8 +27,13 @@ public class Player {
         int rollB = r.nextInt(7) + 1;
 
         if(rollA == rollB) doubleDiceRoll++;
+        else doubleDiceRoll = 0;
 
         return rollA + rollB;
+    }
+
+    public void resetDoubleDiceRoll() {
+        doubleDiceRoll = 0;
     }
 
     public int getDoubleDiceRoll() {
